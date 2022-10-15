@@ -25,3 +25,20 @@ confirmEnding("Bastian", "n");
 function repeatStringNumTimes(str, num) {
   return num > 0 ? str + repeatStringNumTimes(str, num - 1) : '';
 }
+//5
+function generateHashtag (str) {
+    let a = str.length < 140 && str.length > 0 ? str.trim().toLowerCase().split(' ').map(el=>el.replace(el[0], el[0].toUpperCase())).join(""):false
+    console.log(a)
+    let b =  a.startsWith('#') ? a : '#' + a
+    console.log(b)
+    return b.length <= 140 ? b : false
+}
+
+console.log(generateHashtag('#aaa vvv bbb'))
+
+//6
+function search(budget, prices) {
+    return prices.filter(el=>el<=budget).sort((a,b)=>a-b).join(',')
+}
+
+console.log(search(2, [5,2,7,1,3,4,1]))
