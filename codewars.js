@@ -42,3 +42,11 @@ function search(budget, prices) {
 }
 
 console.log(search(2, [5,2,7,1,3,4,1]))
+//7
+function chunkArrayInGroups(arr, size) {
+    let arr2 = []
+    while (arr.length > 0){
+        arr2.push(arr.splice(0, size))
+    }
+    return arr2
+}
