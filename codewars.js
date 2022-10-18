@@ -75,3 +75,8 @@ function solution(string) {
   })
   return string.join('')
 }
+//9
+function disemvowel(str) {
+  let myRegex = /[^aouie]/gi
+  return str.match(myRegex).join('');
+}
