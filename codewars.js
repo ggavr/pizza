@@ -80,3 +80,14 @@ function disemvowel(str) {
   let myRegex = /[^aouie]/gi
   return str.match(myRegex).join('');
 }
+//10
+function smileyFace(arr){
+let faceRegex= /[;:][~-]?[)D]/
+let incr = 0;
+for (face of arr) { 
+  if (faceRegex.test(face)) { 
+    incr++;
+  }
+}
+return incr;
+}
