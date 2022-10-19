@@ -106,3 +106,14 @@ function palindrome(str) {
 }
 
 console.log(palindrome("1 eye for of 1 eye."))
+//12
+function createPhoneNumber(numbers){
+  var format = "(xxx) xxx-xxxx";
+  
+  for(var i = 0; i < numbers.length; i++)
+  {
+    format = format.replace('x', numbers[i]);
+  }
+  
+  return format;
+}
