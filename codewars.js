@@ -91,3 +91,18 @@ for (face of arr) {
 }
 return incr;
 }
+//11
+
+function palindrome(str) {
+    let res = str.replace(/[^a-z0-9]/gi, "").toLowerCase().trim();
+    console.log(res)
+    let asd = res.toLowerCase().trim().split('').reverse().join('')
+    console.log(asd)
+    if(res === asd) {
+        return true;
+    }else{
+        return false
+    }
+}
+
+console.log(palindrome("1 eye for of 1 eye."))
