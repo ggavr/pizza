@@ -162,3 +162,8 @@ function upArray(arr) {
         return Array.isArray(arr) && arr.length > 0;
     }
 }
+//
+function plus(n) {return function(v) {return v + n}}
+function minus(n) {return function(v) {return v - n}}
+function times(n) {return function(v) {return v * n}}
+function dividedBy(n) {return function(v) {return v / n}}
