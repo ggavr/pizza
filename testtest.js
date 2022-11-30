@@ -11,3 +11,9 @@ console.log(duplicate(array))
 // }
 //
 // console.log(number(array))
+findLongestWordLength("The quick brown fox jumped over the lazy dog");
+//2
+function largestOfFour(arr) {
+  let a = arr.map(el => Math.max(...el))
+  return a;
+}
