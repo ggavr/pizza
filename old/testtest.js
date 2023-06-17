@@ -1,4 +1,3 @@
-Hello? world
 let array = [1,1,2,2,3,4,]
 const hasDuplicate = (arr, el) => arr.includes(el) //error
 const duplicate = (arr) => arr.filter(el => hasDuplicate(arr, el))
