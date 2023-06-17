@@ -1,111 +1,45 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cardArray = [
-        {
-            name: 'fries',
-            img: 'images/fries.png'
-        },
-        {
-            name: 'cheeseburger',
-            img: 'images/cheeseburger.png'
-        },
-        {
-            name: 'ice-cream',
-            img: 'images/ice-cream.png'
-        },
-        {
-            name: 'pizza',
-            img: 'images/pizza.png'
-        },
-        {
-            name: 'milkshake',
-            img: 'images/milkshake.png'
-        },
-        {
-            name: 'hotdog',
-            img: 'images/hotdog.png'
-        },
-        {
-            name: 'fries',
-            img: 'images/fries.png'
-        },
-        {
-            name: 'cheeseburger',
-            img: 'images/cheeseburger.png'
-        },
-        {
-            name: 'ice-cream',
-            img: 'images/ice-cream.png'
-        },
-        {
-            name: 'pizza',
-            img: 'images/pizza.png'
-        },
-        {
-            name: 'milkshake',
-            img: 'images/milkshake.png'
-        },
-        {
-            name: 'hotdog',
-            img: 'images/hotdog.png'
-        }
-    ]
+const squares = document.querySelectorAll('.square')
+const mole = document.querySelector('.mole')
+const timeLeft = document.querySelector('#time-left')
+const score = document.querySelector('#score')
 
-    const grid = document.querySelector('.grid')
-    const resultDisplay = document.querySelector('#result')
+let result = 0
+let hitPosition
+let currentTime = 10
+let timerId = null
 
-    let cardsChosen = []
-    let cardsChosenId = []
-    let cardsWon = []
+function randomSquare() {
+    squares.forEach(square => {
+        square.classList.remove('mole')
+    })
+    let randomSquare = squares[Math.floor(Math.random() * 9)]
+    randomSquare.classList.add('mole')
 
-    function createBoard(){
-        for (let i = 0; i < cardArray.length; i++) {
-            const card = document.createElement('img')
-            card.setAttribute('src', 'images/blank.png')
-            card.setAttribute('data-id', i)
-            card.addEventListener('click', flipCard)
-            grid.appendChild(card)
+    hitPosition = randomSquare.id
+}
+squares.forEach(square => {
+    square.addEventListener('mousedown', () => {
+        if (square.id == hitPosition) {
+            result++
+            score.textContent = result
+            hitPosition = null
         }
-    }
-    //check for matches
-    function checkForMatch() {
-        const cards = document.querySelectorAll('img')
-        const optionOneId = cardsChosenId[0]
-        const optionTwoId = cardsChosenId[1]
-
-        if(optionOneId == optionTwoId) {
-            cards[optionOneId].setAttribute('src', 'images/blank.png')
-            cards[optionTwoId].setAttribute('src', 'images/blank.png')
-            alert('You have clicked the same image!')
-        }
-        else if (cardsChosen[0] === cardsChosen[1]) {
-            alert('You found a match')
-            cards[optionOneId].setAttribute('src', 'images/white.png')
-            cards[optionTwoId].setAttribute('src', 'images/white.png')
-            cards[optionOneId].removeEventListener('click', flipCard)
-            cards[optionTwoId].removeEventListener('click', flipCard)
-            cardsWon.push(cardsChosen)
-        }else {
-            cards[optionOneId].setAttribute('src', 'images/blank.png')
-            cards[optionTwoId].setAttribute('src', 'images/blank.png')
-            alert('Sorry, try again')
-        }
-        cardsChosen = []
-        cardsChosenId = []
-        resultDisplay.textContent = cardsWon.length
-        if  (cardsWon.length === cardArray.length/2) {
-            resultDisplay.textContent = 'Congratulations! You found them all!'
-        }
-
-    }
-    //flip your card
-    function flipCard() {
-        let cardId = this.getAttribute('data-id')
-        cardsChosen.push(cardArray[cardId].name)
-        cardsChosenId.push(cardId)
-        this.setAttribute('src', cardArray[cardId].img)
-        if (cardsChosen.length ===2) {
-            setTimeout(checkForMatch, 500)
-        }
-    }
-    createBoard()
+    })
 })
+function moveMole() {
+    timerId = setInterval(randomSquare, 1000)
+}
+
+moveMole()
+function countDown() {
+    currentTime--
+    timeLeft.textContent = currentTime
+
+    if (currentTime == 0) {
+        clearInterval(countDownTimerId)
+        clearInterval(timerId)
+        alert('GAME OVER! Your final score is ' + result)
+    }
+
+}
+let countDownTimerId = setInterval(countDown, 1000)
