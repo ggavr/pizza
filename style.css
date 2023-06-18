@@ -1,15 +1,19 @@
 .grid {
-    width: 606px;
-    height: 606px;
+    width: 200px;
+    height: 200px;
     display: flex;
     flex-wrap: wrap;
+    border-style: solid;
 }
-.square {
-    height: 200px;
-    width: 200px;
-    border: solid black 1px;
+
+.grid div {
+    width: 20px;
+    height: 20px;
 }
-.mole {
-    background-image: url("mole.jpg");
-    background-size: cover;
+.snake {
+    background-color: blue;
+}
+
+.apple {
+    background-color: purple;
 }
