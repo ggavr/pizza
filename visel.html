@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const words = ['shine', 'word', 'consta', 'bless']
+    const word = words[Math.floor(Math.random()*words.length)]
+    const answerArray = []
+
+    for (let i = 0; i < word.length; i++) {
+     answerArray[i]='_'
+    }
+
+    let remainingLetters = word.length;
+
+    while (remainingLetters>0){
+        alert(answerArray.join(" "));
+        const guess = prompt('Guess a word or type esc')
+        if (guess===null) break
+
+        else if (guess.length!==1){
+            alert('Type 1 letter')
+        }else {
+            for (let j = 0; j < word.length; j++) {
+                if (word[j]===guess){
+                    answerArray[j]=guess;
+                    remainingLetters--;
+                }
+            }
+        }
+    }
+    alert(answerArray.join(" "));
+    alert("Good It was " + word)
+
+
+</script>
+</body>
+</html>
